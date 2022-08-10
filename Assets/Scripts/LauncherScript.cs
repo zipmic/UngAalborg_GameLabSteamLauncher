@@ -10,6 +10,7 @@ public class LauncherScript : MonoBehaviour
     private Process _process;
     private string path;
     private List<string> _buildFolders = new List<string>();
+    public AudioSource _music;
 
     public GameObject _contentParent;
     public GameObject PrefabGameButton;
@@ -78,12 +79,14 @@ public class LauncherScript : MonoBehaviour
             if (!_OverlayWhenIngame.activeSelf)
             {
                 _OverlayWhenIngame.SetActive(true);
+                _music.mute = true;
                 Time.timeScale = 0;
             }
             if (_process.HasExited)
             {
                 _OverlayWhenIngame.SetActive(false);
                 _process = null;
+                _music.mute = false;
                 Time.timeScale = 1;
             }
         }
