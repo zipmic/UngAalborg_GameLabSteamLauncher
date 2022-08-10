@@ -20,7 +20,7 @@ public class LauncherScript : MonoBehaviour
 	private void Awake()
 	{
         Application.runInBackground = false;
-        Application.targetFrameRate = 60;
+        Application.targetFrameRate = 100;
 	}
 
 	void Start()
@@ -78,12 +78,19 @@ public class LauncherScript : MonoBehaviour
             if (!_OverlayWhenIngame.activeSelf)
             {
                 _OverlayWhenIngame.SetActive(true);
+                Time.timeScale = 0;
             }
             if (_process.HasExited)
             {
                 _OverlayWhenIngame.SetActive(false);
                 _process = null;
+                Time.timeScale = 1;
             }
+        }
+
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
         }
 	}
 }
