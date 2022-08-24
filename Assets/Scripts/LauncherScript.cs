@@ -54,7 +54,20 @@ public class LauncherScript : MonoBehaviour
             spawn.GetComponent<Image>().sprite = logoSprite;
             spawn.transform.localScale = Vector3.one;
             string[] exefile = System.IO.Directory.GetFiles(path + gamename, "*.exe", SearchOption.TopDirectoryOnly);
-            DirectoryInfo DI = new DirectoryInfo(exefile[0]);
+            string THEEXEFILE = "";
+            for (int j = 0; j < exefile.Length; j++)
+            {
+                if (exefile[j] == "UnityCrashHandler32.exe" || exefile[j] == "UnityCrashHandler64.exe")
+                {
+                    // eh
+                }
+                else
+                {
+                    THEEXEFILE = exefile[j];
+                }
+
+            }
+            DirectoryInfo DI = new DirectoryInfo(THEEXEFILE);
             spawn.GetComponent<Button>().onClick.AddListener(() => StartProcess(gamename, DI.Name));
         }
 
