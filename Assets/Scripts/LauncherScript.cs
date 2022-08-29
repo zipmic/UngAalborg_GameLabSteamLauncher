@@ -57,17 +57,20 @@ public class LauncherScript : MonoBehaviour
             string THEEXEFILE = "";
             for (int j = 0; j < exefile.Length; j++)
             {
-                if (exefile[j] == "UnityCrashHandler32.exe" || exefile[j] == "UnityCrashHandler64.exe")
+               // print("For Game: " + gamename + " There is: "+j+  exefile[j]);
+                if (exefile[j].Contains("UnityCrashHandler32.exe") || exefile[j].Contains("UnityCrashHandler64.exe"))
                 {
                     // eh
                 }
                 else
                 {
                     THEEXEFILE = exefile[j];
+                    
                 }
 
             }
             DirectoryInfo DI = new DirectoryInfo(THEEXEFILE);
+            print(DI.Name);
             spawn.GetComponent<Button>().onClick.AddListener(() => StartProcess(gamename, DI.Name));
         }
 
